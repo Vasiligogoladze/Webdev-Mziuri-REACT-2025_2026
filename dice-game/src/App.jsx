@@ -1,44 +1,39 @@
-import React from "react";
-import DiceGame from "./components/DiceGame";
+import React, { useState } from "react";
+import Player from "./components/Player";
 
+function App() {
+  const [player1, setPlayer1] = useState(1);
+  const [player2, setPlayer2] = useState(1);
+  const [message, setMessage] = useState("Click the button to roll!");
 
-function DiceGame() {
-  const [player1Roll, setPlayer1Roll] = useState(null)
-  const [player2Roll, setPlayer2Roll] = useState(null)
-  const [winner, setWinner] = useState("")
+  function rollDice() {
+    const roll1 = Math.floor(Math.random() * 6) + 1;
+    const roll2 = Math.floor(Math.random() * 6) + 1;
 
-  const rollDice = () => {
+    setPlayer1(roll1);
+    setPlayer2(roll2);
 
-
-
-    //randomia chasaweri
-    setPlayer1Roll(roll1)
-    setPlayer2Roll(roll2)
-
-    if (roll1>roll2) setWinner("Player 1 wins")
-    else if (roll2>roll1) setWinner("Player 2 wins")
-    else setWinner("Tie")
-  }
-
-  const resetGame = () => {
-    setPlayer1Roll(null)
-    setPlayer2Roll(null)
-    setWinner("")
+    if (roll1 > roll2) {
+      setMessage("Player 1 wins!");
+    } else if (roll2 > roll1) {
+      setMessage("Player 2 wins!");
+    } else {
+      setMessage("It's a tie!");
+    }
   }
 
   return (
     <div>
-      <h1>Two Player Dice Game</h1>
-      <div>
-        <Player name="Player 1" roll={player1Roll} />
-        <Player name="Player 2" roll={player2Roll} />
-      </div>
-      <div>
-        <button onClick={rollDice}>Roll Dice</button>
-        <button onClick={resetGame}>Reset</button>
-      </div>
-      <h2>{winner}</h2>
+      <h1>Dice Game</h1>
+
+      <Player name="Player 1" diceValue={player1} />
+      <Player name="Player 2" diceValue={player2} />
+
+      <button onClick={rollDice}>Roll Dice</button>
+
+      <p>{message}</p>
     </div>
-  )
+  );
 }
+
 export default App;

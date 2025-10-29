@@ -1,13 +1,13 @@
-import React from "react"
-import Dice from "./Dice"
+import React from "react";
+import Dice from "./Dice";
 
-function Player({ name, roll }) {
+function Player(props) {
   return (
     <div>
-      <h2>{name}</h2>
-      <Dice value={roll} />
+      <h2>{props.name}</h2>
+      <Dice value={props.diceValue} />
     </div>
-  )
+  );
 }
 
-export default Player
+export default Player;

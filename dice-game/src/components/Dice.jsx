@@ -1,13 +1,8 @@
-import React from "react"
+import React from "react";
 
-function Dice({ value }) {
-  if (value === 1) return <div>⚀</div>
-  if (value === 2) return <div>⚁</div>
-  if (value === 3) return <div>⚂</div>
-  if (value === 4) return <div>⚃</div>
-  if (value === 5) return <div>⚄</div>
-  if (value === 6) return <div>⚅</div>
-  return <div>-</div>
+function Dice(props) {
+  const diceFaces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+  return <div>{diceFaces[props.value - 1]}</div>;
 }
 
-export default Dice
+export default Dice;
